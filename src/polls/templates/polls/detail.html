@@ -1,0 +1,7 @@
+<h1>{{question}}</h1>
+<ul>
+    {% for choice in question.choice_set.all %}
+    <li>{{choice}}</li>
+    {% endfor %}
+</ul>
+<p><a href="{% url 'polls:index' %}">&lt;&lt; Go back</a></p>
