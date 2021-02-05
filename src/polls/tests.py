@@ -1,8 +1,14 @@
 import datetime
 from django.test import TestCase
 from django.utils import timezone
+from django.urls import reverse
 
 from .models import Question
+
+
+def create_question(question_text, days):
+    time = timezone.now() + datetime.timedelta(days=days)
+    return Question.objectjs.create(question_text=question_text, pub_date=time)
 
 
 class TestQuestionModel(TestCase):
@@ -28,3 +34,12 @@ class TestQuestionModel(TestCase):
         recent_question = Question(pub_date=recent_date)
 
         self.assertIs(recent_question.was_published_recently(), True)
+
+
+class TestIndexView(TestCase):
+
+    def test_no_questions(self):
+        response = self.client.get(reverse('polls:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There aren't questions yet.")
+        self.assertQuerysetEqual(response.context['latest_question_list'], [])
