@@ -1,19 +1,30 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Django Tutorial With Clever Programmer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Tutorial With Clever Programmer</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/styles.css' %}" />
 </head>
 <body>
-  {% if latest_question_list %}
-  <ul>
-    {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{question}}</a></li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p>There aren't questions yet.</p>
-  {% endif %}
+    {% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{question}}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>There aren't questions yet.</p>
+    {% endif %}
+    <p>
+        <span id="cat_background">This is with background image by css.</span>
+        <br />
+        <span>This is with img tag.</span>
+        <br />
+        <img src="{% static 'polls/images/choose_me_cat.jpeg' %}" alt="A cat rising up one foot" />
+    </p>
 </body>
 </html>

@@ -1,0 +1,16 @@
+li a {
+    color: green;
+}
+
+#cat_background {
+    display: block;
+    width: 299px;
+    height: 168px;
+    padding-top: 20px;
+    color: red;
+    text-align: center;
+    font-weight: 700;
+    background-image: url('../images/choose_me_cat.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
