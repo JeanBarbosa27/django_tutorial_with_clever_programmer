@@ -134,10 +134,3 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 404)
-
-
-# TODO:
-#   Put each class in a separeted file.
-#   PUt create_question method in a helpers file.
-#   Test results view, in a similar way as detail view.
-#   Queryset just questions with choices in it and test id
