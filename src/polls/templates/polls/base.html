@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}Django Tutorial With Clever Programmer{% endblock head_title %}</title>
+    {% include 'polls/base_static_files/_css.html' %}
+</head>
+<body>
+    {% include 'polls/partials/_navbar.html' %}
+
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+    {% include 'polls/base_static_files/_js.html' %}
+</body>
+</html>
