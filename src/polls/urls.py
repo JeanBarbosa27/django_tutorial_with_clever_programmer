@@ -10,7 +10,12 @@ urlpatterns = [
     path('<int:question_id>/vote', vote, name='vote'),
     path(
         '<int:pk>/results',
-        PollsDetailView.as_view(template_name='polls/results.html'),
+        PollsDetailView.as_view(template_name='polls/pages/results.html'),
         name='results'
+    ),
+    path(
+        'api/charts/result/<int:poll_id>',
+        ChartResultView.as_view(),
+        name="api_results_chart"
     ),
 ]
