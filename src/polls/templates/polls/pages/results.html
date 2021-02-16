@@ -1,0 +1,29 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    <h1 class="text-center py-3 text-primary">The question is: <em>{{question}}</em></h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 class="lead">Options available for voting:</h3>
+            <ul class="list-group">
+            {% for choice in question.choice_set.all %}
+                <li class="list-group-item">
+                    {{choice}}: <strong>{{choice.votes}} vote{{choice.votes|pluralize}}</strong>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <h3 class="lead">Representation of votes</h3>
+            <canvas id="votesOnChart" width="400" height="400" endpoint-url="{% url 'polls:api_results_chart' question.id %}"></canvas>
+
+        </div>
+    </div>
+
+    <a
+        href="{% url 'polls:detail' question.id %}"
+        class="btn btn-secondary"
+    >Vote againg?</a>
+    <a href="{% url 'polls:index' %}" class="btn btn-info">Finish</a>
+{% endblock content %}
