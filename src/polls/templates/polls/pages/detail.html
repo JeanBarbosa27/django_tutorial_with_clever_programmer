@@ -2,20 +2,29 @@
 
 {% block content %}
 
-<h1>{{question}}</h1>
+<p class="my-3 d-flex align-items-center">
+    <a
+        href="{% url 'polls:index' %}"
+        class="text-secondary text-decoration-none"
+    ><span style="font-size: 20px">&#8672;</span> go back</a>
+</p>
+<h1 class="text-primary text-center mb-5">{{question}}</h1>
     {% if error_message %}
     <p><strong>{{error_message}}</strong></p>
     {% endif %}
 
     <form action="{% url 'polls:vote' question.id %}" method="post">
         {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-        <input type="radio" required="required" name="choice" id="choice_{{forloop.counter}}" value="{{choice.id}}"/>
-        <label for="choice_{{forloop.counter}}">{{choice}}</label>
-        <br />
-        {% endfor %}
-        <input type="submit" value="Vote" />
+        <div class="list-group">
+            {% for choice in question.choice_set.all %}
+            <div class="list-group-item">
+                <input type="radio" required="required" name="choice" id="choice_{{forloop.counter}}" value="{{choice.id}}"/>
+                <label for="choice_{{forloop.counter}}">{{choice}}</label>
+            </div>
+            <br />
+            {% endfor %}
+        </div>
+        <input type="submit" value="Vote" class="btn btn-info" />
     </form>
 
-    <p><a href="{% url 'polls:index' %}">&lt;&lt; Go back</a></p>
 {% endblock content %}
